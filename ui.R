@@ -7,7 +7,6 @@
 
 library(shiny)
 library(shinyTable)
-#load('pca.data') ## contains 2 obj classifcation and compoennts
 
 shinyUI(fluidPage(
 
@@ -22,9 +21,11 @@ shinyUI(fluidPage(
   fluidRow(  sidebarLayout(
     sidebarPanel(
       selectInput("dim1", "Choose Your XAxis ( Principal Componenets )" , choices=1:nrow(classifications), selected = 1),
-      selectInput("dim2", "Choose Your YAxis ( Principal Componenets )" , choices=1:nrow(classifications), selected=2),
-      sliderInput("range", "Genes Range:", min = 1, max = 10000, value = c(1, 500)),
-      selectInput("method", "Choose PCA Method", choices=c('BCF','logFC'), selected='logFC')
+      selectInput("dim2", "Choose Your YAxis ( Principal Componenets )" , choices=1:nrow(classifications), selected= 2),
+      textInput("rangeStart", "Top Range:", value=1),
+      textInput("rangeEnd", paste0("Bottom Range: max is  ", nrow(y$counts)), value=500),
+      
+      selectInput("method", "Choose PCA Method", choices=c('BCV','logFC'), selected='logFC')
       
       
       
